@@ -3,6 +3,7 @@ const { exec } = require('child_process');
 const router = express.Router();
 const OutputParser = require('../utils/parser');
 const storage = require('../utils/storage');
+const PlatformUtils = require('../utils/platform');
 
 // Whois lookup
 router.post('/whois', async (req, res) => {
@@ -15,15 +16,15 @@ router.post('/whois', async (req, res) => {
       });
     }
 
-    // Validate domain format
-    const domainRegex = /^[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9](?:\.[a-zA-Z]{2,})+$/;
-    if (!domainRegex.test(target)) {
+    // Validate target
+    const validation = PlatformUtils.validateTarget(target, 'domain');
+    if (!validation.valid) {
       return res.status(400).json({
-        error: 'Invalid domain format'
+        error: validation.error
       });
     }
 
-    const command = `whois ${target}`;
+    const command = PlatformUtils.getWhoisCommand(target);
     
     exec(command, { timeout: 30000 }, async (error, stdout, stderr) => {
       if (error) {
@@ -126,7 +127,7 @@ router.post('/dig', async (req, res) => {
       });
     }
 
-    const command = `dig ${target} ${record_type}`;
+    const command = PlatformUtils.getDNSCommand(target, record_type);
     
     exec(command, { timeout: 15000 }, async (error, stdout, stderr) => {
       if (error) {
@@ -181,9 +182,7 @@ router.post('/ping', async (req, res) => {
       });
     }
 
-    const command = process.platform === 'win32' 
-      ? `ping -n ${count} ${target}`
-      : `ping -c ${count} ${target}`;
+    const command = PlatformUtils.getPingCommand(target, count);
     
     exec(command, { timeout: 20000 }, async (error, stdout, stderr) => {
       // Ping may return non-zero exit code for unreachable hosts, but still provide useful info
@@ -225,9 +224,7 @@ router.post('/traceroute', async (req, res) => {
       });
     }
 
-    const command = process.platform === 'win32' 
-      ? `tracert -h ${max_hops} ${target}`
-      : `traceroute -m ${max_hops} ${target}`;
+    const command = PlatformUtils.getTracerouteCommand(target, max_hops);
     
     exec(command, { timeout: 60000 }, async (error, stdout, stderr) => {
       if (error) {

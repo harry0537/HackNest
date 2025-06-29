@@ -10,6 +10,7 @@ const scanRoutes = require('./routes/scan');
 const webRoutes = require('./routes/web');
 const exploitRoutes = require('./routes/exploit');
 const reportRoutes = require('./routes/reports');
+const systemRoutes = require('./routes/system');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -18,9 +19,11 @@ const PORT = process.env.PORT || 3001;
 app.use(helmet());
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? [process.env.FRONTEND_URL, process.env.BACKEND_URL].filter(Boolean)
+    ? [process.env.FRONTEND_URL, process.env.BACKEND_URL, 'https://hacknest.vercel.app', 'https://hacknest-frontend.railway.app'].filter(Boolean)
     : ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:5173'],
-  credentials: true
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
 }));
 
 // Rate limiting
@@ -44,6 +47,7 @@ app.use('/api/scan', scanRoutes);
 app.use('/api/web', webRoutes);
 app.use('/api/exploit', exploitRoutes);
 app.use('/api/reports', reportRoutes);
+app.use('/api/system', systemRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
