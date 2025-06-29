@@ -15,8 +15,8 @@ const systemRoutes = require('./routes/system');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Trust proxy for production deployments (Railway, Heroku, etc.)
-if (process.env.NODE_ENV === 'production') {
+// Trust proxy for production deployments (Vercel, Railway, Heroku, etc.)
+if (process.env.NODE_ENV === 'production' || process.env.VERCEL) {
   app.set('trust proxy', 1);
 }
 
@@ -93,13 +93,16 @@ app.use('*', (req, res) => {
   });
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`🚀 HackNest Backend Server running on port ${PORT}`);
-  console.log(`📊 Health check: ${process.env.NODE_ENV === 'production' ? 'https://your-domain.com' : `http://localhost:${PORT}`}/api/health`);
-  console.log(`🔒 Security tools API ready`);
-  console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
-  console.log(`🔧 Trust proxy: ${app.get('trust proxy') ? 'enabled' : 'disabled'}`);
-});
+// Export the Express app for Vercel
+module.exports = app;
 
-module.exports = app; 
+// Only start the server in development or when not running on Vercel
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`🚀 HackNest Backend Server running on port ${PORT}`);
+    console.log(`📊 Health check: http://localhost:${PORT}/api/health`);
+    console.log(`🔒 Security tools API ready`);
+    console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
+    console.log(`🔧 Trust proxy: ${app.get('trust proxy') ? 'enabled' : 'disabled'}`);
+  });
+} 
