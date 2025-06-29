@@ -15,6 +15,11 @@ const systemRoutes = require('./routes/system');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// Trust proxy for production deployments (Railway, Heroku, etc.)
+if (process.env.NODE_ENV === 'production') {
+  app.set('trust proxy', 1);
+}
+
 // Security middleware
 app.use(helmet());
 app.use(cors({
@@ -26,11 +31,23 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
 }));
 
-// Rate limiting
+// Rate limiting with proxy support
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // limit each IP to 100 requests per windowMs
-  message: 'Too many requests from this IP, please try again later.'
+  message: 'Too many requests from this IP, please try again later.',
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+  // Skip rate limiting for successful requests
+  skipSuccessfulRequests: false,
+  // Use a more permissive key generator for development
+  keyGenerator: (request) => {
+    if (process.env.NODE_ENV === 'production') {
+      return request.ip;
+    }
+    // In development, use a combination of IP and user agent for better testing
+    return request.ip + ':' + (request.get('User-Agent') || '');
+  }
 });
 app.use(limiter);
 
@@ -79,8 +96,10 @@ app.use('*', (req, res) => {
 // Start server
 app.listen(PORT, () => {
   console.log(`🚀 HackNest Backend Server running on port ${PORT}`);
-  console.log(`📊 Health check: http://localhost:${PORT}/api/health`);
+  console.log(`📊 Health check: ${process.env.NODE_ENV === 'production' ? 'https://your-domain.com' : `http://localhost:${PORT}`}/api/health`);
   console.log(`🔒 Security tools API ready`);
+  console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log(`🔧 Trust proxy: ${app.get('trust proxy') ? 'enabled' : 'disabled'}`);
 });
 
 module.exports = app; 
