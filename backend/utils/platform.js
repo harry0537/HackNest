@@ -8,6 +8,10 @@ class PlatformUtils {
   }
 
   static getWhoisCommand(target) {
+    // Always use nslookup in serverless/Vercel environment for better compatibility
+    if (process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME) {
+      return `nslookup ${target}`;
+    }
     return this.isWindows() 
       ? `nslookup ${target}` 
       : `whois ${target}`;
@@ -26,6 +30,10 @@ class PlatformUtils {
   }
 
   static getDNSCommand(target, recordType = 'A') {
+    // Always use nslookup in serverless environment for better compatibility
+    if (process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME) {
+      return `nslookup -type=${recordType} ${target}`;
+    }
     return this.isWindows()
       ? `nslookup -type=${recordType} ${target}`
       : `dig ${target} ${recordType}`;
@@ -77,19 +85,23 @@ class PlatformUtils {
   }
 
   static getSystemInfo() {
+    const isServerless = !!(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME);
+    
     return {
       platform: process.platform,
       arch: process.arch,
       nodeVersion: process.version,
       isWindows: this.isWindows(),
+      isServerless: isServerless,
+      environment: process.env.VERCEL ? 'Vercel' : process.env.AWS_LAMBDA_FUNCTION_NAME ? 'AWS Lambda' : 'Standard',
       availableCommands: {
-        whois: !this.isWindows(),
+        whois: !this.isWindows() && !isServerless,
         nslookup: true,
         ping: true,
-        traceroute: !this.isWindows(),
+        traceroute: !this.isWindows() && !isServerless,
         tracert: this.isWindows(),
-        dig: !this.isWindows(),
-        nmap: true // Assuming nmap is installed
+        dig: !this.isWindows() && !isServerless,
+        nmap: false // Not available in serverless
       }
     };
   }

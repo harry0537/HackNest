@@ -5,59 +5,118 @@ const moment = require('moment');
 
 class Storage {
   constructor() {
-    this.resultsDir = path.join(__dirname, '../data/results');
+    // In serverless environment, use /tmp directory
+    this.dataDir = process.env.VERCEL ? '/tmp/hacknest-data' : path.join(__dirname, '../data');
+    this.resultsDir = path.join(this.dataDir, 'results');
     this.ensureDirectories();
   }
 
-  async ensureDirectories() {
+  ensureDirectories() {
     try {
-      await fs.ensureDir(this.resultsDir);
-      await fs.ensureDir(path.join(this.resultsDir, 'scans'));
-      await fs.ensureDir(path.join(this.resultsDir, 'reports'));
+      if (!fs.existsSync(this.dataDir)) {
+        fs.mkdirSync(this.dataDir, { recursive: true });
+      }
+      if (!fs.existsSync(this.resultsDir)) {
+        fs.mkdirSync(this.resultsDir, { recursive: true });
+      }
     } catch (error) {
       console.error('Error creating directories:', error);
+      // Fallback to in-memory storage in serverless
+      this.inMemoryStorage = new Map();
     }
   }
 
-  async saveScanResult(tool, target, result, scanType = 'general') {
+  async saveScanResult(tool, target, result, scanType) {
+    const scanId = uuidv4();
+    const timestamp = moment().format('YYYY-MM-DD HH:mm:ss');
+    
+    const scanData = {
+      id: scanId,
+      tool: tool,
+      target: target,
+      scan_type: scanType,
+      result: result,
+      timestamp: timestamp,
+      created_at: new Date().toISOString()
+    };
+
     try {
-      const scanId = uuidv4();
-      const timestamp = moment().format('YYYY-MM-DD_HH-mm-ss');
-      const filename = `${tool}_${timestamp}_${scanId}.json`;
-      const filePath = path.join(this.resultsDir, 'scans', filename);
-
-      const scanData = {
-        id: scanId,
-        tool: tool,
-        target: target,
-        scan_type: scanType,
-        timestamp: moment().toISOString(),
-        result: result,
-        metadata: {
-          created_at: moment().toISOString(),
-          file_name: filename,
-          file_path: filePath
-        }
-      };
-
-      await fs.writeJson(filePath, scanData, { spaces: 2 });
+      // Try to save to file system
+      const filename = `${scanId}.json`;
+      const filepath = path.join(this.resultsDir, filename);
+      await fs.writeJson(filepath, scanData, { spaces: 2 });
       
-      // Update scan history index
-      await this.updateScanHistory(scanData);
-
       return {
         success: true,
         scan_id: scanId,
-        file_path: filePath,
-        message: 'Scan result saved successfully'
+        filename: filename,
+        storage_type: 'file'
       };
     } catch (error) {
-      console.error('Error saving scan result:', error);
+      console.error('File storage error, using memory:', error);
+      // Fallback to in-memory storage
+      if (!this.inMemoryStorage) {
+        this.inMemoryStorage = new Map();
+      }
+      this.inMemoryStorage.set(scanId, scanData);
+      
       return {
-        success: false,
-        error: error.message
+        success: true,
+        scan_id: scanId,
+        storage_type: 'memory'
       };
     }
+  }
+
+  async getScanResult(scanId) {
+    try {
+      // Try file system first
+      const filepath = path.join(this.resultsDir, `${scanId}.json`);
+      if (fs.existsSync(filepath)) {
+        return await fs.readJson(filepath);
+      }
+    } catch (error) {
+      console.error('Error reading from file:', error);
+    }
+
+    // Check in-memory storage
+    if (this.inMemoryStorage && this.inMemoryStorage.has(scanId)) {
+      return this.inMemoryStorage.get(scanId);
+    }
+
+    return null;
+  }
+
+  async getRecentScans(limit = 50) {
+    const scans = [];
+
+    try {
+      // Try to get from file system
+      const files = await fs.readdir(this.resultsDir);
+      const jsonFiles = files.filter(f => f.endsWith('.json'));
+      
+      for (const file of jsonFiles.slice(0, limit)) {
+        try {
+          const data = await fs.readJson(path.join(this.resultsDir, file));
+          scans.push(data);
+        } catch (error) {
+          console.error(`Error reading ${file}:`, error);
+        }
+      }
+    } catch (error) {
+      console.error('Error reading directory:', error);
+    }
+
+    // Add from in-memory storage
+    if (this.inMemoryStorage) {
+      const memoryScans = Array.from(this.inMemoryStorage.values());
+      scans.push(...memoryScans);
+    }
+
+    // Sort by timestamp and limit
+    return scans
+      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+      .slice(0, limit);
   }
 
   async updateScanHistory(scanData) {
@@ -103,34 +162,6 @@ class Storage {
     } catch (error) {
       console.error('Error reading scan history:', error);
       return [];
-    }
-  }
-
-  async getScanResult(scanId) {
-    try {
-      const scanFiles = await fs.readdir(path.join(this.resultsDir, 'scans'));
-      const targetFile = scanFiles.find(file => file.includes(scanId));
-      
-      if (!targetFile) {
-        return {
-          success: false,
-          error: 'Scan not found'
-        };
-      }
-
-      const filePath = path.join(this.resultsDir, 'scans', targetFile);
-      const scanData = await fs.readJson(filePath);
-      
-      return {
-        success: true,
-        data: scanData
-      };
-    } catch (error) {
-      console.error('Error reading scan result:', error);
-      return {
-        success: false,
-        error: error.message
-      };
     }
   }
 
@@ -319,4 +350,7 @@ class Storage {
   }
 }
 
-module.exports = new Storage(); 
+// Create singleton instance
+const storage = new Storage();
+
+module.exports = storage; 
