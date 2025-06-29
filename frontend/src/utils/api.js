@@ -188,4 +188,12 @@ export const getStatusBadgeClass = (status) => {
   }
 };
 
+// Scan API endpoints (serverless-compatible)
+export const scanAPI = {
+  portscan: (data) => api.post('/scan/portscan', data),
+  httpDetect: (data) => api.post('/scan/http-detect', data),
+  sslInfo: (data) => api.post('/scan/ssl-info', data),
+  getAvailable: () => api.get('/scan/available')
+};
+
 export default api; 

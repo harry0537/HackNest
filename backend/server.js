@@ -12,6 +12,9 @@ const exploitRoutes = require('./routes/exploit');
 const reportRoutes = require('./routes/reports');
 const systemRoutes = require('./routes/system');
 
+// Import serverless-compatible routes
+const scanServerlessRoutes = require('./routes/scan-serverless');
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -60,11 +63,16 @@ app.use('/reports', express.static(path.join(__dirname, 'data/results')));
 
 // API Routes
 app.use('/api/recon', reconRoutes);
-app.use('/api/scan', scanRoutes);
+app.use('/api/scan', process.env.VERCEL ? scanServerlessRoutes : scanRoutes);
 app.use('/api/web', webRoutes);
 app.use('/api/exploit', exploitRoutes);
 app.use('/api/reports', reportRoutes);
 app.use('/api/system', systemRoutes);
+
+// Serverless-specific routes
+if (process.env.VERCEL) {
+  app.use('/api/scan-serverless', scanServerlessRoutes);
+}
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
