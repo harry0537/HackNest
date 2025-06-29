@@ -51,15 +51,22 @@ export const healthCheck = () => api.get('/health');
 
 // Recon API endpoints
 export const reconAPI = {
-  whois: (target) => api.post('/recon/whois', { target }),
-  nslookup: (target, record_type = 'A') => api.post('/recon/nslookup', { target, record_type }),
-  dig: (target, record_type = 'ANY') => api.post('/recon/dig', { target, record_type }),
-  ping: (target, count = 4) => api.post('/recon/ping', { target, count }),
-  traceroute: (target, max_hops = 30) => api.post('/recon/traceroute', { target, max_hops }),
+  whois: (data) => api.post('/recon/whois', data),
+  nslookup: (data) => api.post('/recon/nslookup', data),
+  dig: (data) => api.post('/recon/dig', data),
+  ping: (data) => api.post('/recon/ping', data),
+  traceroute: (data) => api.post('/recon/traceroute', data),
 };
 
-// Scan API endpoints
+// Scan API endpoints (serverless-compatible + traditional)
 export const scanAPI = {
+  // Serverless-compatible tools
+  portscan: (data) => api.post('/scan/portscan', data),
+  httpDetect: (data) => api.post('/scan/http-detect', data),
+  sslInfo: (data) => api.post('/scan/ssl-info', data),
+  getAvailable: () => api.get('/scan/available'),
+  
+  // Traditional tools (for dedicated infrastructure)
   nmapQuick: (target, ports = 'top-ports 1000') => api.post('/scan/nmap/quick', { target, ports }),
   nmapFull: (target, scan_type = 'comprehensive') => api.post('/scan/nmap/full', { target, scan_type }),
   nmapCustom: (target, options = '-sS', ports = '1-1000', timing = 'T4') => 
@@ -188,12 +195,6 @@ export const getStatusBadgeClass = (status) => {
   }
 };
 
-// Scan API endpoints (serverless-compatible)
-export const scanAPI = {
-  portscan: (data) => api.post('/scan/portscan', data),
-  httpDetect: (data) => api.post('/scan/http-detect', data),
-  sslInfo: (data) => api.post('/scan/ssl-info', data),
-  getAvailable: () => api.get('/scan/available')
-};
+// Note: scanAPI is defined above with both serverless and traditional tools
 
 export default api; 
