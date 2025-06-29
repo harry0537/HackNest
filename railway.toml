@@ -1,0 +1,9 @@
+﻿[build]
+command = "cd backend && npm install"
+
+[deploy]
+startCommand = "cd backend && npm start"
+
+[env]
+NODE_ENV = "production"
+DEMO_MODE = "true"
