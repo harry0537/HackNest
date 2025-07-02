@@ -1,0 +1,38 @@
+{
+  "id": "18ef029f-2609-4ffc-9cd8-b836013148c2",
+  "tool": "nmap",
+  "target": "google.com",
+  "scan_type": "quick-scan",
+  "result": {
+    "scan_info": {},
+    "hosts": [
+      {
+        "hostname": "google.com (142.250.66.206)",
+        "ip": "",
+        "status": "up (0.046s latency).",
+        "ports": [
+          {
+            "port": "80/tcp",
+            "state": "open",
+            "service": "http",
+            "version": ""
+          },
+          {
+            "port": "443/tcp",
+            "state": "open",
+            "service": "https",
+            "version": ""
+          }
+        ],
+        "services": []
+      }
+    ],
+    "scan_stats": {
+      "total_hosts": "1",
+      "scan_time": "7.33 seconds"
+    },
+    "timestamp": "2025-06-30 08:57:46"
+  },
+  "timestamp": "2025-06-30 08:57:46",
+  "created_at": "2025-06-29T20:57:46.786Z"
+}

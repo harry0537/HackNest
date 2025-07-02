@@ -1,0 +1,14 @@
+{
+  "id": "0d794486-7010-449a-8eb4-82d926ef6357",
+  "tool": "dirb",
+  "target": "https://google.com",
+  "scan_type": "dir-enum",
+  "result": {
+    "tool": "basic-dir-enum",
+    "target": "https://google.com",
+    "directories_found": 2,
+    "method": "Basic HTTP status check"
+  },
+  "timestamp": "2025-07-02 18:20:30",
+  "created_at": "2025-07-02T06:20:30.089Z"
+}

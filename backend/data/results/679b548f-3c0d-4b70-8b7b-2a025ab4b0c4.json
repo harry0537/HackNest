@@ -1,0 +1,43 @@
+{
+  "id": "679b548f-3c0d-4b70-8b7b-2a025ab4b0c4",
+  "tool": "ipconfig",
+  "target": "localhost",
+  "scan_type": "network-config",
+  "result": {
+    "tool": "ipconfig",
+    "raw_output": "\r\nWindows IP Configuration\r\n\r\n\r\nEthernet adapter Ethernet:\r\n\r\n   Media State . . . . . . . . . . . : Media disconnected\r\n   Connection-specific DNS Suffix  . : \r\n\r\nEthernet adapter Npcap Loopback Adapter:\r\n\r\n   Connection-specific DNS Suffix  . : \r\n   Link-local IPv6 Address . . . . . : fe80::8932:753f:7f51:bd6%15\r\n   Autoconfiguration IPv4 Address. . : 169.254.80.121\r\n   Subnet Mask . . . . . . . . . . . : 255.255.0.0\r\n   Default Gateway . . . . . . . . . : \r\n\r\nWireless LAN adapter Local Area Connection* 1:\r\n\r\n   Media State . . . . . . . . . . . : Media disconnected\r\n   Connection-specific DNS Suffix  . : \r\n\r\nWireless LAN adapter Local Area Connection* 2:\r\n\r\n   Media State . . . . . . . . . . . : Media disconnected\r\n   Connection-specific DNS Suffix  . : \r\n\r\nWireless LAN adapter WiFi:\r\n\r\n   Connection-specific DNS Suffix  . : home\r\n   IPv6 Address. . . . . . . . . . . : fd1c:7f2c:2b22:7d00:4133:d59b:e1fb:284a\r\n   Temporary IPv6 Address. . . . . . : fd1c:7f2c:2b22:7d00:bdf1:2201:c4bf:71e5\r\n   Link-local IPv6 Address . . . . . : fe80::7043:69a5:34fc:9d83%11\r\n   IPv4 Address. . . . . . . . . . . : 192.168.1.84\r\n   Subnet Mask . . . . . . . . . . . : 255.255.255.0\r\n   Default Gateway . . . . . . . . . : 192.168.1.254\r\n\r\nEthernet adapter Bluetooth Network Connection:\r\n\r\n   Media State . . . . . . . . . . . : Media disconnected\r\n   Connection-specific DNS Suffix  . : \r\n",
+    "timestamp": "2025-06-30 15:52:14",
+    "lines": [
+      "Windows IP Configuration\r",
+      "Ethernet adapter Ethernet:\r",
+      "   Media State . . . . . . . . . . . : Media disconnected\r",
+      "   Connection-specific DNS Suffix  . : \r",
+      "Ethernet adapter Npcap Loopback Adapter:\r",
+      "   Connection-specific DNS Suffix  . : \r",
+      "   Link-local IPv6 Address . . . . . : fe80::8932:753f:7f51:bd6%15\r",
+      "   Autoconfiguration IPv4 Address. . : 169.254.80.121\r",
+      "   Subnet Mask . . . . . . . . . . . : 255.255.0.0\r",
+      "   Default Gateway . . . . . . . . . : \r",
+      "Wireless LAN adapter Local Area Connection* 1:\r",
+      "   Media State . . . . . . . . . . . : Media disconnected\r",
+      "   Connection-specific DNS Suffix  . : \r",
+      "Wireless LAN adapter Local Area Connection* 2:\r",
+      "   Media State . . . . . . . . . . . : Media disconnected\r",
+      "   Connection-specific DNS Suffix  . : \r",
+      "Wireless LAN adapter WiFi:\r",
+      "   Connection-specific DNS Suffix  . : home\r",
+      "   IPv6 Address. . . . . . . . . . . : fd1c:7f2c:2b22:7d00:4133:d59b:e1fb:284a\r",
+      "   Temporary IPv6 Address. . . . . . : fd1c:7f2c:2b22:7d00:bdf1:2201:c4bf:71e5\r",
+      "   Link-local IPv6 Address . . . . . : fe80::7043:69a5:34fc:9d83%11\r",
+      "   IPv4 Address. . . . . . . . . . . : 192.168.1.84\r",
+      "   Subnet Mask . . . . . . . . . . . : 255.255.255.0\r",
+      "   Default Gateway . . . . . . . . . : 192.168.1.254\r",
+      "Ethernet adapter Bluetooth Network Connection:\r",
+      "   Media State . . . . . . . . . . . : Media disconnected\r",
+      "   Connection-specific DNS Suffix  . : \r"
+    ],
+    "detailed": false
+  },
+  "timestamp": "2025-06-30 15:52:14",
+  "created_at": "2025-06-30T03:52:14.027Z"
+}

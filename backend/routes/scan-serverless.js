@@ -184,7 +184,9 @@ router.post('/ssl-info', async (req, res) => {
     // Use openssl to get SSL info (if available)
     const command = `echo | openssl s_client -connect ${target}:${port} -servername ${target} 2>/dev/null | openssl x509 -noout -text 2>/dev/null`;
     
-    exec(command, { timeout: 15000 }, async (error, stdout, stderr) => {
+    exec(command, { timeout: 15000 }, (error, stdout, stderr) => {
+      (async () => {
+        try {
       let sslInfo = {
         target: target,
         port: port,

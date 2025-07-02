@@ -1,0 +1,16 @@
+{
+  "id": "dbd042b3-27f2-414e-ae03-4ce764f76cb1",
+  "tool": "whois",
+  "target": "hireplants.com",
+  "scan_type": "recon",
+  "result": {
+    "domain_info": {},
+    "registrar_info": {},
+    "dates": {},
+    "name_servers": [],
+    "raw_output": "Server:  UnKnown\r\nAddress:  fe80::1\r\n\r\nName:    hireplants.com\r\nAddress:  223.165.64.131\r\n\r\n",
+    "timestamp": "2025-06-30 12:00:21"
+  },
+  "timestamp": "2025-06-30 12:00:21",
+  "created_at": "2025-06-30T00:00:21.394Z"
+}

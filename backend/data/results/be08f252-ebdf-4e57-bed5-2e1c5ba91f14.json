@@ -1,0 +1,19 @@
+{
+  "id": "be08f252-ebdf-4e57-bed5-2e1c5ba91f14",
+  "tool": "nikto",
+  "target": "https://google.com",
+  "scan_type": "web-vuln",
+  "result": {
+    "tool": "basic-web-analysis",
+    "target": "https://google.com",
+    "server": "gws",
+    "missing_security_headers": [
+      "X-Content-Type-Options",
+      "Strict-Transport-Security"
+    ],
+    "ssl_enabled": false,
+    "port": null
+  },
+  "timestamp": "2025-06-30 16:06:40",
+  "created_at": "2025-06-30T04:06:40.729Z"
+}

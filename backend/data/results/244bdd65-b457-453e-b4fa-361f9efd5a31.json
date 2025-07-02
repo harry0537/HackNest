@@ -1,0 +1,21 @@
+{
+  "id": "244bdd65-b457-453e-b4fa-361f9efd5a31",
+  "tool": "nslookup",
+  "target": "hireplants.com",
+  "scan_type": "dns-recon",
+  "result": {
+    "tool": "nslookup",
+    "raw_output": "Server:  UnKnown\r\nAddress:  fe80::1\r\n\r\nName:    hireplants.com\r\nAddress:  223.165.64.131\r\n\r\n",
+    "timestamp": "2025-06-29 23:30:38",
+    "lines": [
+      "Server:  UnKnown\r",
+      "Address:  fe80::1\r",
+      "Name:    hireplants.com\r",
+      "Address:  223.165.64.131\r"
+    ],
+    "record_type": "A",
+    "target": "hireplants.com"
+  },
+  "timestamp": "2025-06-29 23:30:38",
+  "created_at": "2025-06-29T11:30:38.802Z"
+}

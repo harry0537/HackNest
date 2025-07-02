@@ -1,7 +1,26 @@
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
+// Detect if running in Electron
+const isElectron = window.windowAPI?.isElectron || false;
+
+// Set API base URL based on environment
+const getAPIBaseURL = () => {
+  // If in Electron, always use localhost backend on port 3001
+  if (isElectron) {
+    return 'http://localhost:3001/api';
+  }
+  
+  // If in development (Vite dev server)
+  if (import.meta.env.DEV) {
+    return '/api';
+  }
+  
+  // Production web deployment
+  return import.meta.env.VITE_API_URL || '/api';
+};
+
+const API_BASE_URL = getAPIBaseURL();
 
 // Create axios instance with default config
 const api = axios.create({
@@ -137,6 +156,25 @@ export const reportsAPI = {
       window.URL.revokeObjectURL(url);
     });
   },
+};
+
+// Windows Security API endpoints
+export const windowsAPI = {
+  getTools: () => api.get('/windows/tools'),
+  systeminfo: (data = {}) => api.post('/windows/systeminfo', data),
+  ipconfig: (data = {}) => api.post('/windows/ipconfig', data),
+  netstat: (data = {}) => api.post('/windows/netstat', data),
+  firewall: (data = {}) => api.post('/windows/firewall', data),
+  services: (data = {}) => api.post('/windows/services', data),
+  processes: (data = {}) => api.post('/windows/processes', data),
+  hotfix: (data = {}) => api.post('/windows/hotfix', data),
+  users: (data = {}) => api.post('/windows/users', data),
+  groups: (data = {}) => api.post('/windows/groups', data),
+  wifiProfiles: (data = {}) => api.post('/windows/wifi-profiles', data),
+  openPorts: (data = {}) => api.post('/windows/open-ports', data),
+  installedSoftware: (data = {}) => api.post('/windows/installed-software', data),
+  arp: (data = {}) => api.post('/windows/arp', data),
+  route: (data = {}) => api.post('/windows/route', data),
 };
 
 // Utility functions

@@ -1,0 +1,21 @@
+{
+  "id": "7b08fdc4-2c8d-4921-aca3-25102c5e694b",
+  "tool": "dns",
+  "target": "harveynorman.co.nz",
+  "scan_type": "dns-enum",
+  "result": {
+    "tool": "dns",
+    "raw_output": "Server:  UnKnown\r\nAddress:  fe80::1\r\n\r\nharveynorman.co.nz\tinternet address = 45.60.196.212\r\nharveynorman.co.nz\tinternet address = 45.60.206.212\r\n",
+    "timestamp": "2025-06-30 15:48:35",
+    "lines": [
+      "Server:  UnKnown\r",
+      "Address:  fe80::1\r",
+      "harveynorman.co.nz\tinternet address = 45.60.196.212\r",
+      "harveynorman.co.nz\tinternet address = 45.60.206.212\r"
+    ],
+    "record_type": "ANY",
+    "target": "harveynorman.co.nz"
+  },
+  "timestamp": "2025-06-30 15:48:35",
+  "created_at": "2025-06-30T03:48:35.737Z"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "c639dd2f-7db3-4d4d-af9b-e4cdb63e8077",
+  "tool": "ping",
+  "target": "google.com",
+  "scan_type": "connectivity",
+  "result": {
+    "tool": "ping",
+    "raw_output": "\r\nPinging google.com [142.250.66.206] with 32 bytes of data:\r\nReply from 142.250.66.206: bytes=32 time=31ms TTL=116\r\nReply from 142.250.66.206: bytes=32 time=37ms TTL=116\r\nReply from 142.250.66.206: bytes=32 time=31ms TTL=116\r\nReply from 142.250.66.206: bytes=32 time=42ms TTL=116\r\n\r\nPing statistics for 142.250.66.206:\r\n    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 31ms, Maximum = 42ms, Average = 35ms\r\n",
+    "timestamp": "2025-06-29 23:54:12",
+    "lines": [
+      "Pinging google.com [142.250.66.206] with 32 bytes of data:\r",
+      "Reply from 142.250.66.206: bytes=32 time=31ms TTL=116\r",
+      "Reply from 142.250.66.206: bytes=32 time=37ms TTL=116\r",
+      "Reply from 142.250.66.206: bytes=32 time=31ms TTL=116\r",
+      "Reply from 142.250.66.206: bytes=32 time=42ms TTL=116\r",
+      "Ping statistics for 142.250.66.206:\r",
+      "    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),\r",
+      "Approximate round trip times in milli-seconds:\r",
+      "    Minimum = 31ms, Maximum = 42ms, Average = 35ms\r"
+    ],
+    "target": "google.com",
+    "ping_count": 4,
+    "success": true
+  },
+  "timestamp": "2025-06-29 23:54:12",
+  "created_at": "2025-06-29T11:54:12.933Z"
+}

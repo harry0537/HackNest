@@ -1,0 +1,33 @@
+{
+  "id": "15afb0b7-e1f1-4356-952d-723f9fd6bc35",
+  "tool": "dns",
+  "target": "google.com",
+  "scan_type": "dns-enum",
+  "result": {
+    "tool": "dns",
+    "raw_output": "Server:  UnKnown\r\nAddress:  fe80::1\r\n\r\ngoogle.com\tinternet address = 142.250.66.206\r\ngoogle.com\tAAAA IPv6 address = 2404:6800:4006:80f::200e\r\ngoogle.com\r\n\tprimary name server = ns1.google.com\r\n\tresponsible mail addr = dns-admin.google.com\r\n\tserial  = 777182532\r\n\trefresh = 900 (15 mins)\r\n\tretry   = 900 (15 mins)\r\n\texpire  = 1800 (30 mins)\r\n\tdefault TTL = 60 (1 min)\r\ngoogle.com\tnameserver = ns2.google.com\r\ngoogle.com\tnameserver = ns1.google.com\r\ngoogle.com\tnameserver = ns3.google.com\r\ngoogle.com\tnameserver = ns4.google.com\r\n",
+    "timestamp": "2025-06-30 16:06:06",
+    "lines": [
+      "Server:  UnKnown\r",
+      "Address:  fe80::1\r",
+      "google.com\tinternet address = 142.250.66.206\r",
+      "google.com\tAAAA IPv6 address = 2404:6800:4006:80f::200e\r",
+      "google.com\r",
+      "\tprimary name server = ns1.google.com\r",
+      "\tresponsible mail addr = dns-admin.google.com\r",
+      "\tserial  = 777182532\r",
+      "\trefresh = 900 (15 mins)\r",
+      "\tretry   = 900 (15 mins)\r",
+      "\texpire  = 1800 (30 mins)\r",
+      "\tdefault TTL = 60 (1 min)\r",
+      "google.com\tnameserver = ns2.google.com\r",
+      "google.com\tnameserver = ns1.google.com\r",
+      "google.com\tnameserver = ns3.google.com\r",
+      "google.com\tnameserver = ns4.google.com\r"
+    ],
+    "record_type": "ANY",
+    "target": "google.com"
+  },
+  "timestamp": "2025-06-30 16:06:06",
+  "created_at": "2025-06-30T04:06:06.459Z"
+}

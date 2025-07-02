@@ -1,0 +1,23 @@
+{
+  "id": "74e7de20-f689-47df-8934-9d880eba7855",
+  "tool": "dig",
+  "target": "animates.co.nz",
+  "scan_type": "dns-enum",
+  "result": {
+    "tool": "dig",
+    "raw_output": "Server:  UnKnown\r\nAddress:  fe80::1\r\n\r\nanimates.co.nz\tinternet address = 151.101.1.124\r\nanimates.co.nz\tinternet address = 151.101.193.124\r\nanimates.co.nz\tinternet address = 151.101.129.124\r\nanimates.co.nz\tinternet address = 151.101.65.124\r\n",
+    "timestamp": "2025-06-30 09:30:58",
+    "lines": [
+      "Server:  UnKnown\r",
+      "Address:  fe80::1\r",
+      "animates.co.nz\tinternet address = 151.101.1.124\r",
+      "animates.co.nz\tinternet address = 151.101.193.124\r",
+      "animates.co.nz\tinternet address = 151.101.129.124\r",
+      "animates.co.nz\tinternet address = 151.101.65.124\r"
+    ],
+    "record_type": "ANY",
+    "target": "animates.co.nz"
+  },
+  "timestamp": "2025-06-30 09:30:58",
+  "created_at": "2025-06-29T21:30:58.690Z"
+}

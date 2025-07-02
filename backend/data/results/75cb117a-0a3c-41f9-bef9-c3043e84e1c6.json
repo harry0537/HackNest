@@ -1,0 +1,16 @@
+{
+  "id": "75cb117a-0a3c-41f9-bef9-c3043e84e1c6",
+  "tool": "whois",
+  "target": "google.com",
+  "scan_type": "recon",
+  "result": {
+    "domain_info": {},
+    "registrar_info": {},
+    "dates": {},
+    "name_servers": [],
+    "raw_output": "Server:  UnKnown\r\nAddress:  fe80::1\r\n\r\nName:    google.com\r\nAddresses:  2404:6800:4006:80f::200e\r\n\t  142.250.66.206\r\n\r\n",
+    "timestamp": "2025-06-30 16:06:06"
+  },
+  "timestamp": "2025-06-30 16:06:06",
+  "created_at": "2025-06-30T04:06:06.344Z"
+}

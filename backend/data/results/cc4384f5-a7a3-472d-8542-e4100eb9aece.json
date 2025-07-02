@@ -1,0 +1,44 @@
+{
+  "id": "cc4384f5-a7a3-472d-8542-e4100eb9aece",
+  "tool": "nmap",
+  "target": "hireplants.com",
+  "scan_type": "quick-scan",
+  "result": {
+    "scan_info": {},
+    "hosts": [
+      {
+        "hostname": "hireplants.com (223.165.64.131)",
+        "ip": "",
+        "status": "up (0.0066s latency).",
+        "ports": [
+          {
+            "port": "22/tcp",
+            "state": "open",
+            "service": "ssh",
+            "version": ""
+          },
+          {
+            "port": "80/tcp",
+            "state": "open",
+            "service": "http",
+            "version": ""
+          },
+          {
+            "port": "443/tcp",
+            "state": "open",
+            "service": "https",
+            "version": ""
+          }
+        ],
+        "services": []
+      }
+    ],
+    "scan_stats": {
+      "total_hosts": "1",
+      "scan_time": "6.45 seconds"
+    },
+    "timestamp": "2025-06-30 12:01:03"
+  },
+  "timestamp": "2025-06-30 12:01:03",
+  "created_at": "2025-06-30T00:01:03.066Z"
+}

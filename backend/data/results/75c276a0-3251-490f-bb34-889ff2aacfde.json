@@ -1,0 +1,44 @@
+{
+  "id": "75c276a0-3251-490f-bb34-889ff2aacfde",
+  "tool": "nmap",
+  "target": "google.com",
+  "scan_type": "service-detection",
+  "result": {
+    "scan_info": {},
+    "hosts": [
+      {
+        "hostname": "google.com (142.250.67.14)",
+        "ip": "",
+        "status": "up (0.051s latency).",
+        "ports": [
+          {
+            "port": "80/tcp",
+            "state": "open",
+            "service": "http",
+            "version": "gws"
+          },
+          {
+            "port": "443/tcp",
+            "state": "open",
+            "service": "ssl/https",
+            "version": "gws"
+          },
+          {
+            "port": "2",
+            "state": "services",
+            "service": "unrecognized",
+            "version": "despite returning data. If you know the service/version, please submit the following fingerprints at https://nmap.org/cgi-bin/submit.cgi?new-service :"
+          }
+        ],
+        "services": []
+      }
+    ],
+    "scan_stats": {
+      "total_hosts": "1",
+      "scan_time": "85.10 seconds"
+    },
+    "timestamp": "2025-07-02 18:20:11"
+  },
+  "timestamp": "2025-07-02 18:20:11",
+  "created_at": "2025-07-02T06:20:11.150Z"
+}

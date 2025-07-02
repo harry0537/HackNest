@@ -11,6 +11,7 @@ const webRoutes = require('./routes/web');
 const exploitRoutes = require('./routes/exploit');
 const reportRoutes = require('./routes/reports');
 const systemRoutes = require('./routes/system');
+const windowsRoutes = require('./routes/windows');
 
 // Import serverless-compatible routes
 const scanServerlessRoutes = require('./routes/scan-serverless');
@@ -68,6 +69,7 @@ app.use('/api/web', webRoutes);
 app.use('/api/exploit', exploitRoutes);
 app.use('/api/reports', reportRoutes);
 app.use('/api/system', systemRoutes);
+app.use('/api/windows', windowsRoutes);
 
 // Serverless-specific routes
 if (process.env.VERCEL) {

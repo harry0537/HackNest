@@ -1,0 +1,20 @@
+{
+  "id": "b6a9830f-a8d6-43b9-b36b-8226a08931f2",
+  "tool": "dig",
+  "target": "hireplants.com",
+  "scan_type": "dns-enum",
+  "result": {
+    "tool": "dig",
+    "raw_output": "Server:  UnKnown\r\nAddress:  fe80::1\r\n\r\nhireplants.com\tinternet address = 223.165.64.131\r\n",
+    "timestamp": "2025-06-30 09:11:34",
+    "lines": [
+      "Server:  UnKnown\r",
+      "Address:  fe80::1\r",
+      "hireplants.com\tinternet address = 223.165.64.131\r"
+    ],
+    "record_type": "ANY",
+    "target": "hireplants.com"
+  },
+  "timestamp": "2025-06-30 09:11:34",
+  "created_at": "2025-06-29T21:11:34.640Z"
+}

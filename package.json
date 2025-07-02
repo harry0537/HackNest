@@ -2,17 +2,68 @@
   "name": "hacknest",
   "version": "1.0.0",
   "description": "HackNest - Ethical Hacking Toolkit",
+  "main": "electron/main.js",
+  "homepage": "./",
+  "private": true,
   "scripts": {
-    "build": "cd frontend && npm run build",
-    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\"",
-    "start": "cd backend && npm start",
-    "install-deps": "cd frontend && npm install && cd ../backend && npm install"
+    "dev": "concurrently \"npm run backend:dev\" \"npm run frontend:dev\"",
+    "backend:dev": "cd backend && npm run dev",
+    "frontend:dev": "cd frontend && npm run dev",
+    "build": "npm run frontend:build",
+    "frontend:build": "cd frontend && npm run build",
+    "start": "npm run backend:dev",
+    "electron": "electron .",
+    "electron:dev": "concurrently \"npm run backend:dev\" \"wait-on http://localhost:3000 && cross-env NODE_ENV=development electron .\"",
+    "electron:pack": "npm run build && electron-builder --dir",
+    "electron:dist": "npm run build && electron-builder",
+    "electron:dist-win": "npm run build && electron-builder --win",
+    "postinstall": "cd backend && npm install && cd ../frontend && npm install"
   },
-  "workspaces": [
-    "frontend",
-    "backend"
+  "build": {
+    "appId": "com.hacknest.app",
+    "productName": "HackNest",
+    "directories": {
+      "output": "dist-electron"
+    },
+    "files": [
+      "electron/**/*",
+      "backend/**/*",
+      "frontend/dist/**/*",
+      "!backend/node_modules",
+      "!backend/data/results/**/*"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "electron/assets/icon.ico",
+      "requestedExecutionLevel": "highestAvailable"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "cross-env": "^7.0.3",
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1",
+    "wait-on": "^7.2.0"
+  },
+  "keywords": [
+    "ethical-hacking",
+    "penetration-testing",
+    "security-tools",
+    "desktop",
+    "electron"
   ],
-  "engines": {
-    "node": ">=18.0.0"
-  }
-} 
+  "author": "HackNest Team",
+  "license": "MIT"
+}

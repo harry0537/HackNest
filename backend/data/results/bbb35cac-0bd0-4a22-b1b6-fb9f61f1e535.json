@@ -1,0 +1,30 @@
+{
+  "id": "bbb35cac-0bd0-4a22-b1b6-fb9f61f1e535",
+  "tool": "xss",
+  "target": "https://google.com",
+  "scan_type": "xss-testing",
+  "result": {
+    "target": "https://google.com",
+    "xss_tests": [
+      {
+        "payload": "<script>alert(\"XSS\")</script>",
+        "reflected": false,
+        "response_snippet": "<HTML><HEAD><meta http-equiv=\"content-type\" content=\"text/html;charset=utf-8\">\n<TITLE>301 Moved</TITLE></HEAD><BODY>\n<H1>301 Moved</H1>\nThe document has moved\n<A HREF=\"https://www.google.com/?test=%3C"
+      },
+      {
+        "payload": "\"><script>alert(\"XSS\")</script>",
+        "reflected": false,
+        "response_snippet": "<HTML><HEAD><meta http-equiv=\"content-type\" content=\"text/html;charset=utf-8\">\n<TITLE>301 Moved</TITLE></HEAD><BODY>\n<H1>301 Moved</H1>\nThe document has moved\n<A HREF=\"https://www.google.com/?test=%22"
+      },
+      {
+        "payload": "';alert(\"XSS\");var a='",
+        "reflected": false,
+        "response_snippet": "<HTML><HEAD><meta http-equiv=\"content-type\" content=\"text/html;charset=utf-8\">\n<TITLE>301 Moved</TITLE></HEAD><BODY>\n<H1>301 Moved</H1>\nThe document has moved\n<A HREF=\"https://www.google.com/?test=&#3"
+      }
+    ],
+    "potential_vulnerabilities": 0,
+    "total_tests": 3
+  },
+  "timestamp": "2025-06-30 16:06:48",
+  "created_at": "2025-06-30T04:06:48.873Z"
+}

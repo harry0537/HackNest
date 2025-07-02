@@ -1,0 +1,19 @@
+{
+  "id": "85f537d9-1726-472e-99ec-c59bad90af54",
+  "tool": "sqlmap",
+  "target": "https://google.com",
+  "scan_type": "sql-injection",
+  "result": {
+    "tool": "basic-sql-injection",
+    "target": "https://google.com",
+    "status": "sqlmap_not_available",
+    "method": "basic_payload_testing",
+    "recommendations": [
+      "Install SQLMap for comprehensive testing",
+      "Review input validation",
+      "Test with authentication"
+    ]
+  },
+  "timestamp": "2025-07-02 18:20:39",
+  "created_at": "2025-07-02T06:20:39.275Z"
+}
