@@ -13,9 +13,11 @@ import {
   Loader,
   Zap,
   TrendingUp,
-  Target
+  Target,
+  Info
 } from 'lucide-react'
 import { healthCheck } from '../utils/api'
+import { getFeatureAvailability, getEnvironmentMessage } from '../utils/environment'
 import toast from 'react-hot-toast'
 
 function Dashboard() {
@@ -34,10 +36,12 @@ function Dashboard() {
   });
 
   const [isLoading, setIsLoading] = useState(true);
+  const features = getFeatureAvailability();
+  const envMessage = getEnvironmentMessage();
 
   useEffect(() => {
     // Detect Electron and platform
-    const isElectron = window.windowAPI?.isElectron || false;
+    const isElectron = window.windowAPI?.isElectron || features.isElectron;
     const platform = window.windowAPI?.platform || 
       (navigator.platform.includes('Win') ? 'Windows' : 
        navigator.platform.includes('Mac') ? 'macOS' : 
@@ -60,12 +64,12 @@ function Dashboard() {
         error: null
       });
 
-      // Update stats if health check returns additional data
+      // Update stats based on environment
       if (health.stats) {
         setStats(health.stats);
       } else {
         setStats({
-          toolsAvailable: 8, // Default count
+          toolsAvailable: features.environment === 'serverless' ? 3 : 8,
           recentScans: 0,
           uptime: 'Active'
         });
@@ -197,6 +201,38 @@ function Dashboard() {
 
   return (
     <div style={containerStyle}>
+      {/* Environment Message */}
+      {features.environment === 'serverless' && (
+        <div style={{
+          backgroundColor: '#1e40af',
+          border: '1px solid #3b82f6',
+          borderRadius: '8px',
+          padding: '16px',
+          marginBottom: '24px',
+          display: 'flex',
+          alignItems: 'flex-start',
+          gap: '12px'
+        }}>
+          <Info className="h-5 w-5 text-blue-300 flex-shrink-0 mt-0.5" />
+          <div>
+            <h4 className="text-white font-semibold mb-1">{envMessage.message}</h4>
+            <p className="text-blue-200 text-sm">{envMessage.details}</p>
+            {features.environment === 'serverless' && (
+              <div className="mt-3 flex gap-3">
+                <a 
+                  href="https://github.com/harry0537/HackNest/releases" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-sm font-medium transition-colors"
+                >
+                  Download Desktop Version
+                </a>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* Welcome Header */}
       <div style={headerCardStyle}>
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-x-12"></div>
@@ -214,7 +250,7 @@ function Dashboard() {
               <div>
                 <h1 className="text-4xl font-bold text-white mb-2">HackNest Dashboard</h1>
                 <p style={{color: '#fecaca', fontSize: '18px', fontWeight: '500'}}>
-                  {systemStatus.isElectron ? '🖥️ Windows Desktop Edition' : '🌐 Web Edition'} - Professional Security Testing
+                  {features.platform === 'electron' ? '🖥️ Desktop Edition' : '🌐 Web Edition'} - Professional Security Testing
                 </p>
               </div>
             </div>
@@ -225,7 +261,7 @@ function Dashboard() {
                 <span className="font-medium">System Online</span>
               </div>
               <p className="text-sm text-red-200">
-                Last check: {systemStatus.lastChecked?.toLocaleTimeString()}
+                Environment: {features.environment}
               </p>
             </div>
           </div>
@@ -308,7 +344,7 @@ function Dashboard() {
           <div className="flex items-center justify-between">
             <div>
               <p style={{color: '#9ca3af', fontSize: '14px', marginBottom: '8px', fontWeight: '500'}}>Mode</p>
-              <p className="text-2xl font-bold text-white">{systemStatus.isElectron ? 'Desktop' : 'Web'}</p>
+              <p className="text-2xl font-bold text-white">{features.environment}</p>
             </div>
             <Server className="h-10 w-10" style={{color: '#10b981'}} />
           </div>

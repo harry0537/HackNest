@@ -1,5 +1,6 @@
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { getApiBaseUrl, getFeatureAvailability } from './environment';
 
 // Detect if running in Electron
 const isElectron = window.windowAPI?.isElectron || false;
@@ -21,6 +22,7 @@ const getAPIBaseURL = () => {
 };
 
 const API_BASE_URL = getAPIBaseURL();
+const features = getFeatureAvailability();
 
 // Create axios instance with default config
 const api = axios.create({
@@ -68,6 +70,37 @@ api.interceptors.response.use(
 // Health check
 export const healthCheck = () => api.get('/health');
 
+// Helper function to build API URLs
+const buildUrl = (endpoint) => {
+  // Remove leading slash if present
+  const cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+  return `${API_BASE_URL}/api${cleanEndpoint}`;
+};
+
+// Generic API request handler
+const apiRequest = async (endpoint, options = {}) => {
+  try {
+    const url = buildUrl(endpoint);
+    const response = await fetch(url, {
+      ...options,
+      headers: {
+        'Content-Type': 'application/json',
+        ...options.headers,
+      },
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message || `HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('API request failed:', error);
+    throw error;
+  }
+};
+
 // Recon API endpoints
 export const reconAPI = {
   whois: (data) => api.post('/recon/whois', data),
@@ -77,14 +110,64 @@ export const reconAPI = {
   traceroute: (data) => api.post('/recon/traceroute', data),
 };
 
-// Scan API endpoints (serverless-compatible + traditional)
+// Scan API with environment awareness
 export const scanAPI = {
-  // Serverless-compatible tools
-  portscan: (data) => api.post('/scan/portscan', data),
-  httpDetect: (data) => api.post('/scan/http-detect', data),
-  sslInfo: (data) => api.post('/scan/ssl-info', data),
-  getAvailable: () => api.get('/scan/available'),
-  
+  // Check available tools based on environment
+  getAvailableTools: async () => {
+    if (features.environment === 'serverless') {
+      return apiRequest('/scan-serverless/available');
+    }
+    return apiRequest('/scan/available');
+  },
+
+  // Port scanning
+  portScan: async (target, options = {}) => {
+    const endpoint = features.environment === 'serverless' 
+      ? '/scan-serverless/portscan' 
+      : '/scan/portscan';
+    
+    return apiRequest(endpoint, {
+      method: 'POST',
+      body: JSON.stringify({ target, ...options }),
+    });
+  },
+
+  // Service detection
+  serviceDetection: async (target, options = {}) => {
+    const endpoint = features.environment === 'serverless'
+      ? '/scan-serverless/http-detect'
+      : '/scan/service-detection';
+    
+    return apiRequest(endpoint, {
+      method: 'POST',
+      body: JSON.stringify({ target, ...options }),
+    });
+  },
+
+  // Vulnerability scanning (limited in serverless)
+  vulnScan: async (target, options = {}) => {
+    if (features.environment === 'serverless') {
+      throw new Error('Vulnerability scanning requires desktop version or dedicated server');
+    }
+    
+    return apiRequest('/scan/vuln-scan', {
+      method: 'POST',
+      body: JSON.stringify({ target, ...options }),
+    });
+  },
+
+  // SSL analysis
+  sslAnalysis: async (target, options = {}) => {
+    const endpoint = features.environment === 'serverless'
+      ? '/scan-serverless/ssl-info'
+      : '/scan/ssl-analysis';
+    
+    return apiRequest(endpoint, {
+      method: 'POST',
+      body: JSON.stringify({ target, ...options }),
+    });
+  },
+
   // Traditional tools (for dedicated infrastructure)
   nmapQuick: (target, ports = 'top-ports 1000') => api.post('/scan/nmap/quick', { target, ports }),
   nmapFull: (target, scan_type = 'comprehensive') => api.post('/scan/nmap/full', { target, scan_type }),
@@ -103,8 +186,38 @@ export const webAPI = {
   headers: (data) => api.post('/web/headers', data),
 };
 
-// Exploit API endpoints
+// Exploit API with environment checks
 export const exploitAPI = {
+  search: async (query) => {
+    if (!features.advancedExploits) {
+      throw new Error('Exploit search requires desktop version or dedicated server');
+    }
+    
+    return apiRequest('/exploit/search', {
+      method: 'POST',
+      body: JSON.stringify({ query }),
+    });
+  },
+
+  getDetails: async (exploitId) => {
+    if (!features.advancedExploits) {
+      throw new Error('Exploit details require desktop version or dedicated server');
+    }
+    
+    return apiRequest(`/exploit/details/${exploitId}`);
+  },
+
+  test: async (target, exploitId, options = {}) => {
+    if (!features.advancedExploits) {
+      throw new Error('Exploit testing requires desktop version or dedicated server');
+    }
+    
+    return apiRequest('/exploit/test', {
+      method: 'POST',
+      body: JSON.stringify({ target, exploitId, ...options }),
+    });
+  },
+
   sqlmap: (target, method = 'GET', data = '', risk = 1, level = 1, batch = true) =>
     api.post('/exploit/sqlmap', { target, method, data, risk, level, batch }),
   sqlmapEnumerate: (target, database = '', table = '', column = '', method = 'GET', data = '') =>
@@ -158,8 +271,43 @@ export const reportsAPI = {
   },
 };
 
-// Windows Security API endpoints
+// System API with environment awareness
+export const systemAPI = {
+  getInfo: async () => {
+    return apiRequest('/system/info');
+  },
+
+  checkTools: async () => {
+    if (features.environment === 'serverless') {
+      return {
+        available: ['basic-scan', 'http-detect', 'ssl-info'],
+        unavailable: ['nmap', 'metasploit', 'sqlmap', 'nikto'],
+        environment: 'serverless'
+      };
+    }
+    return apiRequest('/system/check-tools');
+  },
+
+  getEnvironment: () => {
+    return features;
+  }
+};
+
+// Windows API (desktop only)
 export const windowsAPI = {
+  isAvailable: () => features.localFileAccess && features.systemCommands,
+  
+  enumeration: async (options = {}) => {
+    if (!windowsAPI.isAvailable()) {
+      throw new Error('Windows enumeration requires desktop version');
+    }
+    
+    return apiRequest('/windows/enumeration', {
+      method: 'POST',
+      body: JSON.stringify(options),
+    });
+  },
+
   getTools: () => api.get('/windows/tools'),
   systeminfo: (data = {}) => api.post('/windows/systeminfo', data),
   ipconfig: (data = {}) => api.post('/windows/ipconfig', data),
@@ -233,6 +381,14 @@ export const getStatusBadgeClass = (status) => {
   }
 };
 
-// Note: scanAPI is defined above with both serverless and traditional tools
-
-export default api; 
+// Export all APIs
+export default {
+  recon: reconAPI,
+  scan: scanAPI,
+  web: webAPI,
+  exploit: exploitAPI,
+  report: reportsAPI,
+  system: systemAPI,
+  windows: windowsAPI,
+  environment: features
+}; 

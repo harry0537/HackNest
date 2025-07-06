@@ -19,21 +19,54 @@ const scanServerlessRoutes = require('./routes/scan-serverless');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Trust proxy for production deployments (Vercel, Railway, Heroku, etc.)
-if (process.env.NODE_ENV === 'production' || process.env.VERCEL) {
+// Trust proxy for production deployments
+if (process.env.NODE_ENV === 'production' || process.env.VERCEL || process.env.RAILWAY) {
   app.set('trust proxy', 1);
 }
 
-// Security middleware
-app.use(helmet());
-app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? [process.env.FRONTEND_URL, process.env.BACKEND_URL, 'https://hacknest.vercel.app', 'https://hacknest-frontend.railway.app'].filter(Boolean)
-    : ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:5173'],
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
+// Security middleware with relaxed settings for desktop
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: "cross-origin" },
+  contentSecurityPolicy: false // Disable for desktop compatibility
 }));
+
+// CORS configuration for both desktop and online
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or desktop)
+    if (!origin) return callback(null, true);
+    
+    // Production allowed origins
+    const allowedOrigins = [
+      'http://localhost:3000',
+      'http://localhost:3001',
+      'http://localhost:5173',
+      'https://hacknest.vercel.app',
+      'https://hacknest-frontend.railway.app',
+      'https://hacknest.netlify.app',
+      process.env.FRONTEND_URL,
+      process.env.BACKEND_URL
+    ].filter(Boolean);
+    
+    // In production, check against allowed origins
+    if (process.env.NODE_ENV === 'production') {
+      if (allowedOrigins.some(allowed => origin.startsWith(allowed))) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    } else {
+      // In development, allow all origins
+      callback(null, true);
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
+  exposedHeaders: ['Content-Length', 'X-Request-Id']
+};
+
+app.use(cors(corsOptions));
 
 // Rate limiting with proxy support
 const limiter = rateLimit({
