@@ -1,0 +1,31 @@
+{
+  "id": "85f515d7-beb5-45b3-b310-a0e71344ffbf",
+  "tool": "dns",
+  "target": "google.com",
+  "scan_type": "dns-enum",
+  "result": {
+    "tool": "dns",
+    "raw_output": "Server:  UnKnown\r\nAddress:  fe80::1\r\n\r\ngoogle.com\r\n\tprimary name server = ns1.google.com\r\n\tresponsible mail addr = dns-admin.google.com\r\n\tserial  = 777959871\r\n\trefresh = 900 (15 mins)\r\n\tretry   = 900 (15 mins)\r\n\texpire  = 1800 (30 mins)\r\n\tdefault TTL = 60 (1 min)\r\ngoogle.com\tnameserver = ns3.google.com\r\ngoogle.com\tnameserver = ns2.google.com\r\ngoogle.com\tnameserver = ns4.google.com\r\ngoogle.com\tnameserver = ns1.google.com\r\n",
+    "timestamp": "2025-07-02 21:14:02",
+    "lines": [
+      "Server:  UnKnown\r",
+      "Address:  fe80::1\r",
+      "google.com\r",
+      "\tprimary name server = ns1.google.com\r",
+      "\tresponsible mail addr = dns-admin.google.com\r",
+      "\tserial  = 777959871\r",
+      "\trefresh = 900 (15 mins)\r",
+      "\tretry   = 900 (15 mins)\r",
+      "\texpire  = 1800 (30 mins)\r",
+      "\tdefault TTL = 60 (1 min)\r",
+      "google.com\tnameserver = ns3.google.com\r",
+      "google.com\tnameserver = ns2.google.com\r",
+      "google.com\tnameserver = ns4.google.com\r",
+      "google.com\tnameserver = ns1.google.com\r"
+    ],
+    "record_type": "ANY",
+    "target": "google.com"
+  },
+  "timestamp": "2025-07-02 21:14:02",
+  "created_at": "2025-07-02T09:14:02.703Z"
+}

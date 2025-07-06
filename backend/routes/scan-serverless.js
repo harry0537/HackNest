@@ -227,6 +227,14 @@ router.post('/ssl-info', async (req, res) => {
           scan_id: saveResult.scan_id
         });
       }
+        } catch (asyncError) {
+          console.error('SSL info async error:', asyncError);
+          res.status(500).json({
+            error: 'Internal server error',
+            details: asyncError.message
+          });
+        }
+      })();
     });
 
   } catch (error) {

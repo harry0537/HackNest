@@ -1,0 +1,13 @@
+{
+  "id": "d6b266a0-b7c6-41ef-9b53-566a16bc04bb",
+  "tool": "nuclei",
+  "target": "google.com",
+  "scan_type": "vulnerability-scan",
+  "result": {
+    "tool": "basic-vuln-check",
+    "target": "google.com",
+    "note": "Nuclei not available, performed basic checks"
+  },
+  "timestamp": "2025-07-02 21:21:01",
+  "created_at": "2025-07-02T09:21:01.496Z"
+}

@@ -1,0 +1,14 @@
+{
+  "id": "ef10ed9e-9bd2-4ea6-b55e-1b449b81b58d",
+  "tool": "subfinder",
+  "target": "pbtech.co.nz",
+  "scan_type": "subdomain-enum",
+  "result": {
+    "tool": "dns-subdomain-discovery",
+    "target": "pbtech.co.nz",
+    "subdomains": [],
+    "note": "Subfinder not available, performed DNS discovery"
+  },
+  "timestamp": "2025-07-02 22:39:22",
+  "created_at": "2025-07-02T10:39:22.745Z"
+}

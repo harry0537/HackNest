@@ -1,0 +1,21 @@
+{
+  "id": "52be593f-0a64-45b7-b762-1b739d966b89",
+  "tool": "nikto",
+  "target": "https://pbtech.co.nz",
+  "scan_type": "web-vuln",
+  "result": {
+    "tool": "basic-web-analysis",
+    "target": "https://pbtech.co.nz",
+    "server": "cloudflare",
+    "missing_security_headers": [
+      "X-Frame-Options",
+      "X-XSS-Protection",
+      "X-Content-Type-Options",
+      "Strict-Transport-Security"
+    ],
+    "ssl_enabled": false,
+    "port": 80
+  },
+  "timestamp": "2025-07-02 22:42:45",
+  "created_at": "2025-07-02T10:42:45.115Z"
+}

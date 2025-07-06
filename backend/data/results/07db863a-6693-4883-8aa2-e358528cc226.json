@@ -1,0 +1,16 @@
+{
+  "id": "07db863a-6693-4883-8aa2-e358528cc226",
+  "tool": "whois",
+  "target": "yahoo.com",
+  "scan_type": "recon",
+  "result": {
+    "domain_info": {},
+    "registrar_info": {},
+    "dates": {},
+    "name_servers": [],
+    "raw_output": "Server:  UnKnown\r\nAddress:  fe80::1\r\n\r\nName:    yahoo.com\r\nAddresses:  2001:4998:124:1507::f001\r\n\t  2001:4998:24:120d::1:0\r\n\t  2001:4998:24:120d::1:1\r\n\t  2001:4998:44:3507::8000\r\n\t  2001:4998:44:3507::8001\r\n\t  2001:4998:124:1507::f000\r\n\t  74.6.231.21\r\n\t  74.6.143.26\r\n\t  98.137.11.164\r\n\t  74.6.143.25\r\n\t  98.137.11.163\r\n\t  74.6.231.20\r\n\r\n",
+    "timestamp": "2025-07-02 22:21:42"
+  },
+  "timestamp": "2025-07-02 22:21:42",
+  "created_at": "2025-07-02T10:21:42.258Z"
+}

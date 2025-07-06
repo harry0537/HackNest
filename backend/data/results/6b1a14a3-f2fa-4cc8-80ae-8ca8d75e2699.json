@@ -1,0 +1,38 @@
+{
+  "id": "6b1a14a3-f2fa-4cc8-80ae-8ca8d75e2699",
+  "tool": "nmap",
+  "target": "yahoo.com",
+  "scan_type": "quick-scan",
+  "result": {
+    "scan_info": {},
+    "hosts": [
+      {
+        "hostname": "yahoo.com (74.6.231.21)",
+        "ip": "",
+        "status": "up (0.28s latency).",
+        "ports": [
+          {
+            "port": "80/tcp",
+            "state": "open",
+            "service": "http",
+            "version": ""
+          },
+          {
+            "port": "443/tcp",
+            "state": "open",
+            "service": "https",
+            "version": ""
+          }
+        ],
+        "services": []
+      }
+    ],
+    "scan_stats": {
+      "total_hosts": "1",
+      "scan_time": "27.13 seconds"
+    },
+    "timestamp": "2025-07-02 22:23:03"
+  },
+  "timestamp": "2025-07-02 22:23:03",
+  "created_at": "2025-07-02T10:23:03.831Z"
+}

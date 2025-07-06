@@ -1,0 +1,935 @@
+{
+  "id": "f5c8615f-fe0a-4739-af9f-3bbb65c60ab8",
+  "tool": "gobuster",
+  "target": "https://pbtech.co.nz",
+  "scan_type": "directory-enum",
+  "result": {
+    "tool": "advanced-dir-enum",
+    "target": "https://pbtech.co.nz",
+    "found_paths": [
+      {
+        "path": "https://pbtech.co.nz/files.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/media.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/media.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/media.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/media.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/static.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/static.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/files.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/control.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/panel.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/panel.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/panel.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/dashboard.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/dashboard.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/dashboard.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/members.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/members.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/dashboard.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/members.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/members.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/member.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/member.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/member.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/member.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/users.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/users.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/users.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/users.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/user.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/user.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/user.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/user.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/logs.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/logs.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/logs.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/logs.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/cache.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/cache.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/cache.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/cache.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/temp.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/temp.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/temp.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/tmp.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/temp.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/tmp.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/tmp.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/tmp.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/files.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/files.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/install.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/install.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/install.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/sql.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/sql.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/sql.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/sql.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/db.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/db.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/db.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/db.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/database.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/database.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/database.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/database.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/mysql.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/mysql.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/mysql.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/mysql.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/phpmyadmin.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/phpmyadmin.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/phpmyadmin.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/phpmyadmin.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/email.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/email.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/email.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/mail.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/mail.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/email.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/webmail.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/mail.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/mail.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/webmail.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/webmail.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/webmail.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/cpanel.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/cpanel.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/cpanel.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/cpanel.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/control.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/control.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/control.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/panel.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/private.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/secure.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/secure.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/secure.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/secure.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/portal.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/portal.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/portal.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/portal.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/application.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/application.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/application.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/application.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/app.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/app.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/app.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/app.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/cms.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/cms.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/cms.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/cms.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/wordpress.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/wordpress.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/wordpress.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/wordpress.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/wp-includes.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/wp-includes.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/wp-includes.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/wp-includes.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/wp-content.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/wp-content.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/wp-content.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/wp-content.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/wp-admin.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/wp-admin.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/wp-admin.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/wp-admin.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/setup.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/setup.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/setup.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/setup.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/install.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/private.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/v1.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/v1.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/v1.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/new.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/new.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/new.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/new.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/old.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/old.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/old.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/old.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/alpha.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/alpha.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/alpha.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/alpha.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/beta.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/beta.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/beta.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/beta.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/production.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/production.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/production.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/production.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/staging.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/staging.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/staging.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/staging.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/development.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/development.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/development.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/development.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/dev.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/dev.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/dev.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/internal.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/dev.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/internal.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/internal.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/internal.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/private.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/private.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/v2.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/v1.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/web.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/web.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/web.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/services.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/services.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/services.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/services.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/service.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/service.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/service.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/service.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/ajax.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/ajax.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/ajax.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/ajax.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/json.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/json.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/json.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/json.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/xml.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/xml.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/xml.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/xml.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/soap.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/soap.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/soap.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/rest.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/soap.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/rest.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/api/v2.js",
+        "status": "301"
+      },
+      {
+        "path": "https://pbtech.co.nz/rest.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/rest.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/api/v1.js",
+        "status": "301"
+      },
+      {
+        "path": "https://pbtech.co.nz/api/v2.txt",
+        "status": "301"
+      },
+      {
+        "path": "https://pbtech.co.nz/api/v2.php",
+        "status": "301"
+      },
+      {
+        "path": "https://pbtech.co.nz/api/v2.html",
+        "status": "301"
+      },
+      {
+        "path": "https://pbtech.co.nz/api/v1.txt",
+        "status": "301"
+      },
+      {
+        "path": "https://pbtech.co.nz/api/v1.html",
+        "status": "301"
+      },
+      {
+        "path": "https://pbtech.co.nz/api/v1.php",
+        "status": "301"
+      },
+      {
+        "path": "https://pbtech.co.nz/v2.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/v2.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/v2.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/sites.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/sites.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/sites.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/sites.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/site.js",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/site.txt",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/site.html",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/site.php",
+        "status": "403"
+      },
+      {
+        "path": "https://pbtech.co.nz/web.js",
+        "status": "403"
+      }
+    ],
+    "note": "Gobuster not available, performed advanced enumeration"
+  },
+  "timestamp": "2025-07-02 22:42:58",
+  "created_at": "2025-07-02T10:42:58.168Z"
+}

@@ -1,8 +1,21 @@
 const express = require('express');
 const { exec } = require('child_process');
+const { promisify } = require('util');
 const router = express.Router();
 const OutputParser = require('../utils/parser');
 const storage = require('../utils/storage');
+
+const execAsync = promisify(exec);
+
+// Helper function to handle exec with proper async/await
+async function executeCommand(command, options = {}) {
+  try {
+    const { stdout, stderr } = await execAsync(command, options);
+    return { stdout, stderr, error: null };
+  } catch (error) {
+    return { stdout: error.stdout || '', stderr: error.stderr || '', error };
+  }
+}
 
 // Validate IP address or hostname
 function validateTarget(target) {

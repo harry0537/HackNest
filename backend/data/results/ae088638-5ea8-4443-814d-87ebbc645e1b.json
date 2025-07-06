@@ -1,0 +1,13 @@
+{
+  "id": "ae088638-5ea8-4443-814d-87ebbc645e1b",
+  "tool": "theharvester",
+  "target": "yahoo.com",
+  "scan_type": "osint-gathering",
+  "result": {
+    "tool": "basic-email-search",
+    "target": "yahoo.com",
+    "note": "TheHarvester not available, performed basic search"
+  },
+  "timestamp": "2025-07-02 22:22:22",
+  "created_at": "2025-07-02T10:22:22.262Z"
+}

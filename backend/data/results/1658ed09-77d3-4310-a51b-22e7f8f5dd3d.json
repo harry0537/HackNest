@@ -1,0 +1,13 @@
+{
+  "id": "1658ed09-77d3-4310-a51b-22e7f8f5dd3d",
+  "tool": "masscan",
+  "target": "google.com",
+  "scan_type": "fast-scan",
+  "result": {
+    "tool": "scan-unavailable",
+    "target": "google.com",
+    "note": "Both Masscan and fast Nmap scan failed"
+  },
+  "timestamp": "2025-07-02 21:17:37",
+  "created_at": "2025-07-02T09:17:37.776Z"
+}

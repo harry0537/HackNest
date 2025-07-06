@@ -5,7 +5,8 @@ import {
   Zap,
   Wrench,
   FileText,
-  Shield
+  Shield,
+  Terminal
 } from 'lucide-react'
 
 function Sidebar() {
@@ -25,6 +26,12 @@ function Sidebar() {
       icon: Zap, 
       label: 'Pentest Wizard',
       description: 'Guided penetration testing'
+    },
+    { 
+      path: '/tools', 
+      icon: Terminal, 
+      label: 'Tools Dashboard',
+      description: 'Organized security tools'
     },
     { 
       path: '/advanced', 

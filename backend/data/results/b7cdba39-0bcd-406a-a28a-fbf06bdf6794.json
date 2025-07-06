@@ -1,0 +1,16 @@
+{
+  "id": "b7cdba39-0bcd-406a-a28a-fbf06bdf6794",
+  "tool": "nmap-vulners",
+  "target": "google.com",
+  "scan_type": "vuln-scan",
+  "result": {
+    "tool": "nmap-vulners",
+    "vulnerabilities": [],
+    "cves": [],
+    "services": [],
+    "success": false,
+    "summary": "Found 0 CVEs, 0 vulnerabilities"
+  },
+  "timestamp": "2025-07-02 21:20:47",
+  "created_at": "2025-07-02T09:20:47.578Z"
+}

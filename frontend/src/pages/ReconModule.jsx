@@ -218,18 +218,18 @@ function ReconModule() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-6 min-h-screen bg-gray-900">
       <div className="flex items-center gap-3">
         <Search className="h-8 w-8 text-blue-500" />
         <div>
           <h1 className="text-2xl font-bold text-white">Reconnaissance</h1>
-          <p className="text-dark-400">Information gathering and network discovery</p>
+          <p className="text-gray-400">Information gathering and network discovery</p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Input Section */}
-        <div className="card">
+        <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
           <h3 className="text-lg font-semibold text-white mb-4">Target Information</h3>
           
           <div className="space-y-4">
@@ -237,7 +237,7 @@ function ReconModule() {
               <label className="block text-sm font-medium text-white mb-2">Target Domain/IP</label>
               <input
                 type="text"
-                className="form-input"
+                className="w-full px-3 py-2 bg-gray-700 border border-gray-600 text-white rounded-lg focus:border-blue-500 focus:outline-none"
                 placeholder="example.com or 192.168.1.1"
                 value={target}
                 onChange={(e) => setTarget(e.target.value)}
@@ -259,7 +259,7 @@ function ReconModule() {
               <button
                 onClick={runWhois}
                 disabled={!target || loading.whois}
-                className="btn-primary"
+                className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 text-white px-4 py-2 rounded-lg flex items-center justify-center gap-2 transition-colors"
               >
                 {loading.whois ? (
                   <>
@@ -277,7 +277,7 @@ function ReconModule() {
               <button
                 onClick={runNSLookup}
                 disabled={!target || loading.nslookup}
-                className="btn-secondary"
+                className="bg-gray-600 hover:bg-gray-700 disabled:bg-gray-700 text-white px-4 py-2 rounded-lg flex items-center justify-center gap-2 transition-colors"
               >
                 {loading.nslookup ? (
                   <>
@@ -295,7 +295,7 @@ function ReconModule() {
               <button
                 onClick={runDig}
                 disabled={!target || loading.dig}
-                className="btn-secondary"
+                className="bg-gray-600 hover:bg-gray-700 disabled:bg-gray-700 text-white px-4 py-2 rounded-lg flex items-center justify-center gap-2 transition-colors"
               >
                 {loading.dig ? (
                   <>
@@ -313,7 +313,7 @@ function ReconModule() {
               <button
                 onClick={runPing}
                 disabled={!target || loading.ping}
-                className="btn-accent"
+                className="bg-green-600 hover:bg-green-700 disabled:bg-gray-700 text-white px-4 py-2 rounded-lg flex items-center justify-center gap-2 transition-colors"
               >
                 {loading.ping ? (
                   <>
@@ -332,7 +332,7 @@ function ReconModule() {
             <button
               onClick={runTraceroute}
               disabled={!target || loading.traceroute}
-              className="btn-secondary w-full"
+              className="bg-gray-600 hover:bg-gray-700 disabled:bg-gray-700 text-white px-4 py-2 rounded-lg flex items-center justify-center gap-2 transition-colors w-full"
             >
               {loading.traceroute ? (
                 <>
@@ -351,7 +351,7 @@ function ReconModule() {
 
         {/* Workflow Suggestions */}
         {suggestions.filter(s => s.phase === 'reconnaissance' || s.phase === 'scanning').length > 0 && (
-          <div className="card">
+          <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
             <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
               <Target className="h-5 w-5 text-yellow-500" />
               Workflow Suggestions
@@ -363,19 +363,17 @@ function ReconModule() {
                 .map((suggestion, idx) => (
                   <div 
                     key={idx} 
-                    className="p-3 rounded border-l-4"
+                    className="p-3 rounded border-l-4 bg-gray-700"
                     style={{
-                      backgroundColor: '#1a1a1a',
                       borderLeftColor: suggestion.priority === 'high' ? '#ef4444' : '#f59e0b'
                     }}
                   >
                     <div className="flex items-center justify-between mb-1">
                       <span className="font-medium text-white">{suggestion.action}</span>
                       <span 
-                        className="px-2 py-1 rounded text-xs"
+                        className="px-2 py-1 rounded text-xs text-white"
                         style={{
-                          backgroundColor: suggestion.priority === 'high' ? '#ef4444' : '#f59e0b',
-                          color: '#ffffff'
+                          backgroundColor: suggestion.priority === 'high' ? '#ef4444' : '#f59e0b'
                         }}
                       >
                         {suggestion.priority}
@@ -392,45 +390,45 @@ function ReconModule() {
         {/* Results Section */}
         <div className="lg:col-span-2 space-y-4">
           {results.whois && (
-            <div className="card">
+            <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
               <h4 className="font-semibold text-white mb-3">WHOIS Results</h4>
-              <div className="bg-dark-800 p-4 rounded border font-mono text-sm text-terminal-green overflow-auto max-h-64">
+              <div className="bg-gray-900 p-4 rounded border border-gray-600 font-mono text-sm text-green-400 overflow-auto max-h-64">
                 {results.whois.result.output}
               </div>
             </div>
           )}
 
           {results.nslookup && (
-            <div className="card">
+            <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
               <h4 className="font-semibold text-white mb-3">NSLookup Results</h4>
-              <div className="bg-dark-800 p-4 rounded border font-mono text-sm text-terminal-green overflow-auto max-h-64">
+              <div className="bg-gray-900 p-4 rounded border border-gray-600 font-mono text-sm text-green-400 overflow-auto max-h-64">
                 {results.nslookup.result.output}
               </div>
             </div>
           )}
 
           {results.dig && (
-            <div className="card">
+            <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
               <h4 className="font-semibold text-white mb-3">DIG Results</h4>
-              <div className="bg-dark-800 p-4 rounded border font-mono text-sm text-terminal-green overflow-auto max-h-64">
+              <div className="bg-gray-900 p-4 rounded border border-gray-600 font-mono text-sm text-green-400 overflow-auto max-h-64">
                 {results.dig.result.output}
               </div>
             </div>
           )}
 
           {results.ping && (
-            <div className="card">
+            <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
               <h4 className="font-semibold text-white mb-3">Ping Results</h4>
-              <div className="bg-dark-800 p-4 rounded border font-mono text-sm text-terminal-green overflow-auto max-h-64">
+              <div className="bg-gray-900 p-4 rounded border border-gray-600 font-mono text-sm text-green-400 overflow-auto max-h-64">
                 {results.ping.result.output}
               </div>
             </div>
           )}
 
           {results.traceroute && (
-            <div className="card">
+            <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
               <h4 className="font-semibold text-white mb-3">Traceroute Results</h4>
-              <div className="bg-dark-800 p-4 rounded border font-mono text-sm text-terminal-green overflow-auto max-h-64">
+              <div className="bg-gray-900 p-4 rounded border border-gray-600 font-mono text-sm text-green-400 overflow-auto max-h-64">
                 {results.traceroute.result.output}
               </div>
             </div>

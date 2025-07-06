@@ -1,0 +1,36 @@
+{
+  "id": "1e3989ae-3425-47ce-bab2-a392cbb21d2d",
+  "tool": "dns",
+  "target": "yahoo.com",
+  "scan_type": "dns-enum",
+  "result": {
+    "tool": "dns",
+    "raw_output": "Server:  UnKnown\r\nAddress:  fe80::1\r\n\r\nyahoo.com\tinternet address = 98.137.11.164\r\nyahoo.com\tinternet address = 74.6.143.25\r\nyahoo.com\tinternet address = 98.137.11.163\r\nyahoo.com\tinternet address = 74.6.231.20\r\nyahoo.com\tinternet address = 74.6.231.21\r\nyahoo.com\tinternet address = 74.6.143.26\r\nyahoo.com\tAAAA IPv6 address = 2001:4998:44:3507::8001\r\nyahoo.com\tAAAA IPv6 address = 2001:4998:124:1507::f000\r\nyahoo.com\tAAAA IPv6 address = 2001:4998:124:1507::f001\r\nyahoo.com\tAAAA IPv6 address = 2001:4998:24:120d::1:0\r\nyahoo.com\tAAAA IPv6 address = 2001:4998:24:120d::1:1\r\nyahoo.com\tAAAA IPv6 address = 2001:4998:44:3507::8000\r\nyahoo.com\tnameserver = ns1.yahoo.com\r\nyahoo.com\tnameserver = ns2.yahoo.com\r\nyahoo.com\tnameserver = ns5.yahoo.com\r\nyahoo.com\tnameserver = ns4.yahoo.com\r\nyahoo.com\tnameserver = ns3.yahoo.com\r\n",
+    "timestamp": "2025-07-02 22:21:43",
+    "lines": [
+      "Server:  UnKnown\r",
+      "Address:  fe80::1\r",
+      "yahoo.com\tinternet address = 98.137.11.164\r",
+      "yahoo.com\tinternet address = 74.6.143.25\r",
+      "yahoo.com\tinternet address = 98.137.11.163\r",
+      "yahoo.com\tinternet address = 74.6.231.20\r",
+      "yahoo.com\tinternet address = 74.6.231.21\r",
+      "yahoo.com\tinternet address = 74.6.143.26\r",
+      "yahoo.com\tAAAA IPv6 address = 2001:4998:44:3507::8001\r",
+      "yahoo.com\tAAAA IPv6 address = 2001:4998:124:1507::f000\r",
+      "yahoo.com\tAAAA IPv6 address = 2001:4998:124:1507::f001\r",
+      "yahoo.com\tAAAA IPv6 address = 2001:4998:24:120d::1:0\r",
+      "yahoo.com\tAAAA IPv6 address = 2001:4998:24:120d::1:1\r",
+      "yahoo.com\tAAAA IPv6 address = 2001:4998:44:3507::8000\r",
+      "yahoo.com\tnameserver = ns1.yahoo.com\r",
+      "yahoo.com\tnameserver = ns2.yahoo.com\r",
+      "yahoo.com\tnameserver = ns5.yahoo.com\r",
+      "yahoo.com\tnameserver = ns4.yahoo.com\r",
+      "yahoo.com\tnameserver = ns3.yahoo.com\r"
+    ],
+    "record_type": "ANY",
+    "target": "yahoo.com"
+  },
+  "timestamp": "2025-07-02 22:21:43",
+  "created_at": "2025-07-02T10:21:43.222Z"
+}

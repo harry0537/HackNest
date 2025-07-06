@@ -1,0 +1,13 @@
+{
+  "id": "ce8f3ef3-c959-4a63-9ff5-1013dbc8cbfe",
+  "tool": "nuclei",
+  "target": "yahoo.com",
+  "scan_type": "vulnerability-scan",
+  "result": {
+    "tool": "basic-vuln-check",
+    "target": "yahoo.com",
+    "note": "Nuclei not available, performed basic checks"
+  },
+  "timestamp": "2025-07-02 22:23:12",
+  "created_at": "2025-07-02T10:23:12.067Z"
+}

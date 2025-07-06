@@ -1,0 +1,33 @@
+{
+  "id": "9c089034-3f17-40db-898b-683fb77884a2",
+  "tool": "xss-test",
+  "target": "https://pbtech.co.nz",
+  "scan_type": "xss-testing",
+  "result": {
+    "target": "https://pbtech.co.nz",
+    "payloads_tested": 3,
+    "reflected_payloads": 0,
+    "test_results": [
+      {
+        "payload": "<script>alert(\"XSS\")</script>",
+        "reflected": false,
+        "response_snippet": "<!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta nam",
+        "error": null
+      },
+      {
+        "payload": "\"><script>alert(\"XSS\")</script>",
+        "reflected": false,
+        "response_snippet": "<!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta nam",
+        "error": null
+      },
+      {
+        "payload": "';alert(\"XSS\");var a='",
+        "reflected": false,
+        "response_snippet": "<!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta nam",
+        "error": null
+      }
+    ]
+  },
+  "timestamp": "2025-07-02 22:43:17",
+  "created_at": "2025-07-02T10:43:17.445Z"
+}

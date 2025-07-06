@@ -1,9 +1,22 @@
 const express = require('express');
 const { exec } = require('child_process');
+const { promisify } = require('util');
 const router = express.Router();
 const OutputParser = require('../utils/parser');
 const storage = require('../utils/storage');
 const PlatformUtils = require('../utils/platform');
+
+const execAsync = promisify(exec);
+
+// Helper function to handle exec with proper async/await
+async function executeCommand(command, options = {}) {
+  try {
+    const { stdout, stderr } = await execAsync(command, options);
+    return { stdout, stderr, error: null };
+  } catch (error) {
+    return { stdout: error.stdout || '', stderr: error.stderr || '', error };
+  }
+}
 
 // Windows System Information
 router.post('/systeminfo', async (req, res) => {
@@ -94,6 +107,14 @@ router.post('/ipconfig', async (req, res) => {
         scan_id: saveResult.scan_id,
         raw_output: stderr || null
       });
+        } catch (asyncError) {
+          console.error('IPConfig async error:', asyncError);
+          res.status(500).json({
+            error: 'Internal server error',
+            details: asyncError.message
+          });
+        }
+      })();
     });
 
   } catch (error) {
@@ -141,6 +162,14 @@ router.post('/netstat', async (req, res) => {
         scan_id: saveResult.scan_id,
         raw_output: stderr || null
       });
+        } catch (asyncError) {
+          console.error('Netstat async error:', asyncError);
+          res.status(500).json({
+            error: 'Internal server error',
+            details: asyncError.message
+          });
+        }
+      })();
     });
 
   } catch (error) {
@@ -185,6 +214,14 @@ router.post('/firewall', async (req, res) => {
         scan_id: saveResult.scan_id,
         raw_output: stderr || null
       });
+        } catch (asyncError) {
+          console.error('Windows Firewall async error:', asyncError);
+          res.status(500).json({
+            error: 'Internal server error',
+            details: asyncError.message
+          });
+        }
+      })();
     });
 
   } catch (error) {
@@ -229,6 +266,14 @@ router.post('/services', async (req, res) => {
         scan_id: saveResult.scan_id,
         raw_output: stderr || null
       });
+        } catch (asyncError) {
+          console.error('Windows Services async error:', asyncError);
+          res.status(500).json({
+            error: 'Internal server error',
+            details: asyncError.message
+          });
+        }
+      })();
     });
 
   } catch (error) {
@@ -273,6 +318,14 @@ router.post('/processes', async (req, res) => {
         scan_id: saveResult.scan_id,
         raw_output: stderr || null
       });
+        } catch (asyncError) {
+          console.error('Windows Processes async error:', asyncError);
+          res.status(500).json({
+            error: 'Internal server error',
+            details: asyncError.message
+          });
+        }
+      })();
     });
 
   } catch (error) {
@@ -317,6 +370,14 @@ router.post('/hotfix', async (req, res) => {
         scan_id: saveResult.scan_id,
         raw_output: stderr || null
       });
+        } catch (asyncError) {
+          console.error('Windows Hotfix async error:', asyncError);
+          res.status(500).json({
+            error: 'Internal server error',
+            details: asyncError.message
+          });
+        }
+      })();
     });
 
   } catch (error) {
@@ -361,6 +422,14 @@ router.post('/users', async (req, res) => {
         scan_id: saveResult.scan_id,
         raw_output: stderr || null
       });
+        } catch (asyncError) {
+          console.error('Windows Users async error:', asyncError);
+          res.status(500).json({
+            error: 'Internal server error',
+            details: asyncError.message
+          });
+        }
+      })();
     });
 
   } catch (error) {
@@ -405,6 +474,14 @@ router.post('/groups', async (req, res) => {
         scan_id: saveResult.scan_id,
         raw_output: stderr || null
       });
+        } catch (asyncError) {
+          console.error('Windows Groups async error:', asyncError);
+          res.status(500).json({
+            error: 'Internal server error',
+            details: asyncError.message
+          });
+        }
+      })();
     });
 
   } catch (error) {
@@ -449,6 +526,14 @@ router.post('/wifi-profiles', async (req, res) => {
         scan_id: saveResult.scan_id,
         raw_output: stderr || null
       });
+        } catch (asyncError) {
+          console.error('WiFi Profiles async error:', asyncError);
+          res.status(500).json({
+            error: 'Internal server error',
+            details: asyncError.message
+          });
+        }
+      })();
     });
 
   } catch (error) {
@@ -493,6 +578,14 @@ router.post('/open-ports', async (req, res) => {
         scan_id: saveResult.scan_id,
         raw_output: stderr || null
       });
+        } catch (asyncError) {
+          console.error('Open Ports async error:', asyncError);
+          res.status(500).json({
+            error: 'Internal server error',
+            details: asyncError.message
+          });
+        }
+      })();
     });
 
   } catch (error) {
@@ -537,6 +630,14 @@ router.post('/installed-software', async (req, res) => {
         scan_id: saveResult.scan_id,
         raw_output: stderr || null
       });
+        } catch (asyncError) {
+          console.error('Installed Software async error:', asyncError);
+          res.status(500).json({
+            error: 'Internal server error',
+            details: asyncError.message
+          });
+        }
+      })();
     });
 
   } catch (error) {
@@ -579,6 +680,14 @@ router.post('/arp', async (req, res) => {
         scan_id: saveResult.scan_id,
         raw_output: stderr || null
       });
+        } catch (asyncError) {
+          console.error('ARP async error:', asyncError);
+          res.status(500).json({
+            error: 'Internal server error',
+            details: asyncError.message
+          });
+        }
+      })();
     });
 
   } catch (error) {
@@ -617,6 +726,14 @@ router.post('/route', async (req, res) => {
         scan_id: saveResult.scan_id,
         raw_output: stderr || null
       });
+        } catch (asyncError) {
+          console.error('Route async error:', asyncError);
+          res.status(500).json({
+            error: 'Internal server error',
+            details: asyncError.message
+          });
+        }
+      })();
     });
 
   } catch (error) {

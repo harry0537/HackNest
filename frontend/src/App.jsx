@@ -10,6 +10,7 @@ import WorkflowDashboard from './pages/WorkflowDashboard'
 import AutomatedWorkflow from './pages/AutomatedWorkflow'
 import UnifiedPentestWizard from './pages/UnifiedPentestWizard'
 import AdvancedTools from './pages/AdvancedTools'
+import ToolsDashboard from './pages/ToolsDashboard'
 import ReconModule from './pages/ReconModule'
 import ScanModule from './pages/ScanModule'
 import WebModule from './pages/WebModule'
@@ -32,6 +33,7 @@ function App() {
               <Route path="/" element={<Dashboard />} />
               <Route path="/wizard" element={<UnifiedPentestWizard />} />
               <Route path="/advanced" element={<AdvancedTools />} />
+              <Route path="/tools" element={<ToolsDashboard />} />
               <Route path="/workflow" element={<WorkflowDashboard />} />
               <Route path="/automated" element={<AutomatedWorkflow />} />
               <Route path="/recon" element={<ReconModule />} />

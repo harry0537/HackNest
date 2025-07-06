@@ -1,9 +1,22 @@
 const express = require('express');
 const { exec } = require('child_process');
+const { promisify } = require('util');
 const router = express.Router();
 const OutputParser = require('../utils/parser');
 const storage = require('../utils/storage');
 const PlatformUtils = require('../utils/platform');
+
+const execAsync = promisify(exec);
+
+// Helper function to handle exec with proper async/await
+async function executeCommand(command, options = {}) {
+  try {
+    const { stdout, stderr } = await execAsync(command, options);
+    return { stdout, stderr, error: null };
+  } catch (error) {
+    return { stdout: error.stdout || '', stderr: error.stderr || '', error };
+  }
+}
 
 // Whois lookup
 router.post('/whois', async (req, res) => {
@@ -26,52 +39,44 @@ router.post('/whois', async (req, res) => {
 
     const command = PlatformUtils.getWhoisCommand(target);
     
-    exec(command, { timeout: 30000 }, (error, stdout, stderr) => {
-      (async () => {
-        try {
-          if (error) {
-            console.error('Whois error:', error);
-            
-            // Provide fallback information
-            let fallbackOutput = `WHOIS lookup failed for ${target}\n`;
-            fallbackOutput += `Error: ${error.message}\n\n`;
-            fallbackOutput += 'This may be due to:\n';
-            fallbackOutput += '- WHOIS service unavailable\n';
-            fallbackOutput += '- Domain does not exist\n';
-            fallbackOutput += '- Network connectivity issues\n';
-            
-            return res.json({
-              success: false,
-              tool: 'whois',
-              target: target,
-              output: fallbackOutput,
-              result: { error: error.message, target: target },
-              error: error.message
-            });
-          }
+    console.log('Executing Whois lookup');
+    
+    const result = await executeCommand(command, { timeout: 30000 });
+    
+    if (result.error) {
+      console.error('Whois error:', result.error);
+      
+      // Provide fallback information
+      let fallbackOutput = `WHOIS lookup failed for ${target}\n`;
+      fallbackOutput += `Error: ${result.error.message}\n\n`;
+      fallbackOutput += 'This may be due to:\n';
+      fallbackOutput += '- WHOIS service unavailable\n';
+      fallbackOutput += '- Domain does not exist\n';
+      fallbackOutput += '- Network connectivity issues\n';
+      
+      return res.json({
+        success: false,
+        tool: 'whois',
+        target: target,
+        output: fallbackOutput,
+        result: { error: result.error.message, target: target },
+        error: result.error.message
+      });
+    }
 
-          const parsedResult = OutputParser.parseWhoisOutput(stdout);
-          
-          // Save result to storage
-          const saveResult = await storage.saveScanResult('whois', target, parsedResult, 'recon');
-          
-          res.json({
-            success: true,
-            tool: 'whois',
-            target: target,
-            output: stdout,
-            result: parsedResult,
-            scan_id: saveResult.scan_id,
-            raw_output: stderr || null
-          });
-        } catch (asyncError) {
-          console.error('Whois async error:', asyncError);
-          res.status(500).json({
-            error: 'Internal server error in async operation',
-            details: asyncError.message
-          });
-        }
-      })();
+    const parsedResult = OutputParser.parseWhoisOutput(result.stdout);
+    
+    // Save result to storage
+    const saveResult = await storage.saveScanResult('whois', target, parsedResult, 'recon');
+    
+    res.json({
+      success: true,
+      tool: 'whois',
+      target: target,
+      output: result.stdout,
+      result: parsedResult,
+      scan_id: saveResult.scan_id,
+      raw_output: result.stderr || null
     });
 
   } catch (error) {
@@ -228,49 +233,41 @@ router.post('/ping', async (req, res) => {
 
     const command = PlatformUtils.getPingCommand(target, count);
     
-    exec(command, { timeout: 20000 }, (error, stdout, stderr) => {
-      (async () => {
-        try {
-          // Ping may return non-zero exit code for unreachable hosts, but still provide useful info
-          let isSuccessful = !error || stdout.includes('bytes=') || stdout.includes('bytes from') || stdout.includes('time=');
-          
-          let output = `Ping test for ${target}\n`;
-          output += '='.repeat(30) + '\n';
-          output += stdout;
-          
-          if (error && !isSuccessful) {
-            output += `\nPing failed: ${error.message}\n`;
-            output += 'This may indicate:\n';
-            output += '- Host is unreachable\n';
-            output += '- Firewall blocking ICMP\n';
-            output += '- Network connectivity issues\n';
-          }
-          
-          const parsedResult = OutputParser.parseGenericOutput(stdout, 'ping');
-          parsedResult.target = target;
-          parsedResult.ping_count = count;
-          parsedResult.success = isSuccessful;
-          
-          // Save result to storage
-          const saveResult = await storage.saveScanResult('ping', target, parsedResult, 'connectivity');
-          
-          res.json({
-            success: isSuccessful,
-            tool: 'ping',
-            target: target,
-            output: output,
-            result: parsedResult,
-            scan_id: saveResult.scan_id,
-            raw_output: stderr || null
-          });
-        } catch (asyncError) {
-          console.error('Ping async error:', asyncError);
-          res.status(500).json({
-            error: 'Internal server error in async operation',
-            details: asyncError.message
-          });
-        }
-      })();
+    console.log('Executing ping connectivity test');
+    
+    const result = await executeCommand(command, { timeout: 20000 });
+    
+    // Ping may return non-zero exit code for unreachable hosts, but still provide useful info
+    let isSuccessful = !result.error || result.stdout.includes('bytes=') || result.stdout.includes('bytes from') || result.stdout.includes('time=');
+    
+    let output = `Ping test for ${target}\n`;
+    output += '='.repeat(30) + '\n';
+    output += result.stdout;
+    
+    if (result.error && !isSuccessful) {
+      output += `\nPing failed: ${result.error.message}\n`;
+      output += 'This may indicate:\n';
+      output += '- Host is unreachable\n';
+      output += '- Firewall blocking ICMP\n';
+      output += '- Network connectivity issues\n';
+    }
+    
+    const parsedResult = OutputParser.parseGenericOutput(result.stdout, 'ping');
+    parsedResult.target = target;
+    parsedResult.ping_count = count;
+    parsedResult.success = isSuccessful;
+    
+    // Save result to storage
+    const saveResult = await storage.saveScanResult('ping', target, parsedResult, 'connectivity');
+    
+    res.json({
+      success: isSuccessful,
+      tool: 'ping',
+      target: target,
+      output: output,
+      result: parsedResult,
+      scan_id: saveResult.scan_id,
+      raw_output: result.stderr || null
     });
 
   } catch (error) {

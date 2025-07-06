@@ -1,0 +1,13 @@
+{
+  "id": "3d19505c-d359-4169-a7d1-84a3c56f220a",
+  "tool": "theharvester",
+  "target": "pbtech.co.nz",
+  "scan_type": "osint-gathering",
+  "result": {
+    "tool": "basic-email-search",
+    "target": "pbtech.co.nz",
+    "note": "TheHarvester not available, performed basic search"
+  },
+  "timestamp": "2025-07-02 22:39:24",
+  "created_at": "2025-07-02T10:39:24.754Z"
+}
