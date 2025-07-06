@@ -1,22 +1,15 @@
 {
   "version": 2,
   "name": "hacknest",
+  "buildCommand": "npm run build",
+  "outputDirectory": "frontend/dist",
+  "installCommand": "npm install",
   "builds": [
     {
       "src": "backend/server.js",
       "use": "@vercel/node",
       "config": {
-        "maxLambdaSize": "50mb",
-        "includeFiles": [
-          "backend/**"
-        ]
-      }
-    },
-    {
-      "src": "frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "frontend/dist"
+        "maxLambdaSize": "50mb"
       }
     }
   ],
@@ -27,11 +20,11 @@
     },
     {
       "src": "/assets/(.*)",
-      "dest": "/frontend/dist/assets/$1"
+      "dest": "/assets/$1"
     },
     {
       "src": "/(.*)",
-      "dest": "/frontend/dist/$1"
+      "dest": "/$1"
     }
   ],
   "env": {

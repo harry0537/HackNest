@@ -10,6 +10,7 @@
     "backend:dev": "cd backend && npm run dev",
     "frontend:dev": "cd frontend && npm run dev",
     "build": "npm run frontend:build",
+    "build:vercel": "cd frontend && npm install && npm run build",
     "frontend:build": "cd frontend && npm run build",
     "start": "npm run backend:dev",
     "electron": "electron .",
